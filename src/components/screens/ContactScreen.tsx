@@ -24,10 +24,25 @@ export default function ContactScreen({ onNavigate, prefillService }: ContactScr
     const newTicket = 'JR-' + Math.floor(1000 + Math.random() * 9000);
     setTicketId(newTicket);
     setSubmitted(true);
+
+    // Open default mail client with pre-filled form data
+    const subject = encodeURIComponent(`New Project Inquiry: ${projectType} - ${name}`);
+    const body = encodeURIComponent(`
+Ticket ID: ${newTicket}
+Client Name: ${name}
+Client Email: ${email}
+Project Type: ${projectType}
+Budget Target: ${budgetTier}
+
+Project Brief / Goals:
+${brief || 'No brief provided.'}
+    `);
+
+    window.location.href = `mailto:jino.developer21@gmail.com?subject=${subject}&body=${body}`;
   };
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText('jinorrajan@gmail.com');
+    navigator.clipboard.writeText('jino.developer21@gmail.com');
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 3000);
   };
@@ -38,13 +53,15 @@ export default function ContactScreen({ onNavigate, prefillService }: ContactScr
     'Backend & APIs',
     'System Design',
     'Codebase Audit',
+    'Others'
   ];
 
   const budgetOptions = [
-    '< $3k (Scoped Task / Audit)',
-    '$3k - $8k (MVP Sprint)',
-    '$8k - $20k (Full Product)',
+    'Scoped Task / Audit',
+    'MVP Sprint',
+    'Full Product',
     'Retainer (Ongoing)',
+    'Others'
   ];
 
   return (
@@ -124,11 +141,10 @@ export default function ContactScreen({ onNavigate, prefillService }: ContactScr
                           key={type}
                           type="button"
                           onClick={() => setProjectType(type)}
-                          className={`px-3 py-1.5 font-label-code text-[11px] font-semibold border-2 border-black transition-all cursor-pointer ${
-                            projectType === type
-                              ? 'bg-[#fae100] text-[#201c00] shadow-[2px_2px_0px_#000000] translate-x-[-1px] translate-y-[-1px] font-bold'
-                              : 'bg-[#f5f4ef] text-[#444748] hover:bg-white'
-                          }`}
+                          className={`px-3 py-1.5 font-label-code text-[11px] font-semibold border-2 border-black transition-all cursor-pointer ${projectType === type
+                            ? 'bg-[#fae100] text-[#201c00] shadow-[2px_2px_0px_#000000] translate-x-[-1px] translate-y-[-1px] font-bold'
+                            : 'bg-[#f5f4ef] text-[#444748] hover:bg-white'
+                            }`}
                         >
                           {type}
                         </button>
@@ -139,7 +155,7 @@ export default function ContactScreen({ onNavigate, prefillService }: ContactScr
                   {/* Budget Selector */}
                   <div className="flex flex-col gap-2">
                     <label className="font-label-badge text-[11px] uppercase font-bold text-black flex items-center justify-between">
-                      <span>2. Estimated Timeline &amp; Budget Range</span>
+                      <span>2. Project SCope & Engagement Type</span>
                       <span className="text-[#444748] font-normal font-label-code text-[10px]">// target scope</span>
                     </label>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -148,11 +164,10 @@ export default function ContactScreen({ onNavigate, prefillService }: ContactScr
                           key={b}
                           type="button"
                           onClick={() => setBudgetTier(b)}
-                          className={`p-2 font-label-code text-[11px] font-semibold border-2 border-black text-left transition-all cursor-pointer ${
-                            budgetTier === b
-                              ? 'bg-[#a7f3d0] text-black shadow-[2px_2px_0px_#000000] translate-x-[-1px] translate-y-[-1px] font-bold'
-                              : 'bg-[#f5f4ef] text-[#444748] hover:bg-white'
-                          }`}
+                          className={`p-2 font-label-code text-[11px] font-semibold border-2 border-black text-left transition-all cursor-pointer ${budgetTier === b
+                            ? 'bg-[#a7f3d0] text-black shadow-[2px_2px_0px_#000000] translate-x-[-1px] translate-y-[-1px] font-bold'
+                            : 'bg-[#f5f4ef] text-[#444748] hover:bg-white'
+                            }`}
                         >
                           {b}
                         </button>
@@ -230,19 +245,19 @@ export default function ContactScreen({ onNavigate, prefillService }: ContactScr
                 <span className="text-emerald-400 text-[10px]">LIVE SYNC</span>
               </div>
               <pre className="text-[11px] leading-relaxed text-[#a7f3d0] overflow-x-auto py-1">
-{JSON.stringify(
-  {
-    target_engineer: 'Jino R.',
-    status: 'READY_FOR_DISPATCH',
-    category: projectType,
-    budget_range: budgetTier,
-    client_name: name || '<awaiting input>',
-    client_email: email || '<awaiting input>',
-    brief_length: brief ? `${brief.length} characters` : 'empty',
-  },
-  null,
-  2
-)}
+                {JSON.stringify(
+                  {
+                    target_engineer: 'Jino R.',
+                    status: 'READY_FOR_DISPATCH',
+                    category: projectType,
+                    budget_range: budgetTier,
+                    client_name: name || '<awaiting input>',
+                    client_email: email || '<awaiting input>',
+                    brief_length: brief ? `${brief.length} characters` : 'empty',
+                  },
+                  null,
+                  2
+                )}
               </pre>
               <div className="text-[10px] text-[#c8c6c5] border-t border-white/20 pt-1">
                 // Direct gRPC payload validation active
@@ -262,7 +277,7 @@ export default function ContactScreen({ onNavigate, prefillService }: ContactScr
                     <Mail size={16} className="text-black" />
                     <div>
                       <div className="text-[10px] uppercase font-bold text-[#444748]">Primary Email</div>
-                      <div className="font-bold text-black">jinorrajan@gmail.com</div>
+                      <div className="font-bold text-black">jino.developer21@gmail.com</div>
                     </div>
                   </div>
                   <button

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { NavTab } from '../../types';
 import { ASSETS, TOOLKIT } from '../../data/portfolioData';
-import { FileText, Check, Laptop, Terminal, Sparkles, ExternalLink } from 'lucide-react';
+import { FileText, Check, Laptop, Terminal, Sparkles, ExternalLink, X } from 'lucide-react';
 
 interface AboutScreenProps {
   onNavigate: (tab: NavTab) => void;
@@ -9,8 +9,24 @@ interface AboutScreenProps {
 
 export default function AboutScreen({ onNavigate }: AboutScreenProps) {
   const [downloaded, setDownloaded] = useState(false);
+  const [showDownloadModal, setShowDownloadModal] = useState(false);
 
-  const handleDownloadResume = () => {
+  const handleOpenDownloadModal = () => {
+    setShowDownloadModal(true);
+  };
+
+  const handleDownload = (type: 'freelance' | 'fulltime') => {
+    setShowDownloadModal(false);
+    
+    // Trigger download
+    const a = document.createElement('a');
+    a.href = type === 'freelance' ? '/Jino_R_Freelance_CV.pdf' : '/Jino_R_FullTime_CV.pdf';
+    a.download = type === 'freelance' ? 'Jino_R_Freelance_CV.pdf' : 'Jino_R_FullTime_CV.pdf';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    // Show success animation
     setDownloaded(true);
     setTimeout(() => setDownloaded(false), 4000);
   };
@@ -52,7 +68,7 @@ export default function AboutScreen({ onNavigate }: AboutScreenProps) {
                   <img
                     alt="Jino R Portrait"
                     className="w-full h-full object-cover"
-                    src={ASSETS.polaroidPortrait}
+                    src={ASSETS.aboutPortrait}
                     style={{ objectPosition: 'center 20%' }}
                   />
                   <div className="absolute bottom-2 left-2 px-2 py-0.5 bg-black/80 text-white font-label-code text-[10px]">
@@ -84,7 +100,7 @@ export default function AboutScreen({ onNavigate }: AboutScreenProps) {
 
               {/* Resume Action */}
               <button
-                onClick={handleDownloadResume}
+                onClick={handleOpenDownloadModal}
                 className="w-full max-w-[280px] flex items-center justify-center gap-2 px-4 py-2.5 bg-[#fae100] border-2 border-black font-headline-sm text-[14px] font-bold text-[#201c00] shadow-[3px_3px_0px_#000000] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[5px_5px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] transition-all cursor-pointer"
               >
                 {downloaded ? (
@@ -257,22 +273,22 @@ export default function AboutScreen({ onNavigate }: AboutScreenProps) {
           </div>
         </section>
 
-        {/* Workstation & Desk Gear */}
+        {/* Core Engineering Stack */}
         <section className="p-6 bg-[#efeee9] border-2 border-black shadow-[5px_5px_0px_#000000] flex flex-col gap-4">
           <div className="flex items-center gap-2">
-            <Laptop size={20} className="text-black" />
+            <Terminal size={20} className="text-black" />
             <h2 className="font-headline-sm text-[18px] font-bold text-black uppercase">
-              Engineering Workstation &amp; Rig
+              Core Engineering Stack
             </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-label-code text-[12px]">
             <div className="p-3 bg-white border border-black">
-              <div className="font-bold text-black">COMPUTE</div>
-              <div className="text-[#444748]">Apple Silicon M-Series MacBook Pro 32GB + Linux Ubuntu Server</div>
+              <div className="font-bold text-black">CORE LANGUAGES</div>
+              <div className="text-[#444748]">TypeScript, Dart, Go, Node.js, Python, SQL</div>
             </div>
             <div className="p-3 bg-white border border-black">
-              <div className="font-bold text-black">PERIPHERALS</div>
-              <div className="text-[#444748]">Custom Mechanical Keyboard (Tactile 65g switches), 4K Color-Accurate Display</div>
+              <div className="font-bold text-black">CLOUD &amp; DATABASES</div>
+              <div className="text-[#444748]">AWS, Google Cloud, PostgreSQL, Redis, Firebase, Supabase</div>
             </div>
             <div className="p-3 bg-white border border-black">
               <div className="font-bold text-black">EDITORS &amp; DEVTOOLS</div>
@@ -305,6 +321,50 @@ export default function AboutScreen({ onNavigate }: AboutScreenProps) {
           </div>
         </div>
       </div>
+      {/* CV Download Modal */}
+      {showDownloadModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
+          <div
+            className="relative w-full max-w-sm bg-[#faf9f4] border-4 border-black shadow-[10px_10px_0px_#000000] flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between bg-black text-white px-4 py-2 border-b-2 border-black font-label-code text-[12px]">
+              <span className="font-bold tracking-widest text-[#fae100]">SELECT PROFILE</span>
+              <button
+                onClick={() => setShowDownloadModal(false)}
+                className="p-1 bg-white text-black hover:bg-red-500 hover:text-white transition-colors border border-black cursor-pointer"
+                aria-label="Close modal"
+              >
+                <X size={14} strokeWidth={3} />
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="p-6 flex flex-col gap-4">
+              <p className="font-body-md text-[#1b1c19] text-center mb-2">
+                Which version of the Dossier would you like to download?
+              </p>
+
+              <button
+                onClick={() => handleDownload('freelance')}
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-[#a7f3d0] border-2 border-black font-headline-sm text-[15px] font-bold text-black shadow-[4px_4px_0px_#000000] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#000000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_#000000] transition-all cursor-pointer"
+              >
+                <Sparkles size={18} />
+                <span>Freelance Profile</span>
+              </button>
+
+              <button
+                onClick={() => handleDownload('fulltime')}
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-white border-2 border-black font-headline-sm text-[15px] font-bold text-black shadow-[4px_4px_0px_#000000] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#000000] hover:bg-[#efeee9] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_#000000] transition-all cursor-pointer"
+              >
+                <Laptop size={18} />
+                <span>Full-Time Profile</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

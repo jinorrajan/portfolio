@@ -120,7 +120,7 @@ export default function HomeScreen({ onNavigate }: HomeScreenProps) {
                   <img
                     alt="Jino R Polaroid Portrait"
                     className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300"
-                    src={ASSETS.polaroidPortrait}
+                    src={ASSETS.homePortrait}
                     style={{ objectPosition: 'center 20%' }}
                   />
                   <div className="absolute bottom-2 left-2 px-2 py-0.5 bg-black/80 text-white font-label-code text-[11px]">
@@ -301,10 +301,10 @@ export default function HomeScreen({ onNavigate }: HomeScreenProps) {
                     ROLE: PRODUCT ENGINEER
                   </span>
                   <span className="px-2 py-0.5 bg-[#efeee9] border border-black font-label-badge text-[11px] font-bold">
-                    DURATION: 3 MONTHS
+                    DURATION: ONGOING
                   </span>
-                  <span className="px-2 py-0.5 bg-[#a7f3d0] border border-black font-label-badge text-[11px] text-black font-bold">
-                    ✨ PRODUCTION SHIP
+                  <span className="px-2 py-0.5 bg-[#fef08a] border border-black font-label-badge text-[11px] text-black font-bold">
+                    🚧 BETA DEVELOPMENT
                   </span>
                 </div>
 
@@ -319,10 +319,10 @@ export default function HomeScreen({ onNavigate }: HomeScreenProps) {
                 <div className="p-3 bg-[#efeee9] border-2 border-black shadow-[2px_2px_0px_#000000] flex flex-col gap-1">
                   <div className="font-label-badge text-[11px] text-black uppercase font-bold flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-blue-600"></span>
-                    KEY HIGHLIGHT: Smart Dispatch Engine
+                    KEY HIGHLIGHT: Scalable Dispatch Engine
                   </div>
                   <p className="font-body-sm text-[#444748] leading-relaxed">
-                    Architected geofenced real-time order batching and dynamic courier assignment, reducing average pickup latency by 24% under peak lunch concurrency.
+                    Architected geofenced real-time order batching and dynamic courier assignment, successfully stress-tested to support 10,000+ concurrent WebSocket connections without bottlenecking.
                   </p>
                 </div>
 
@@ -352,24 +352,24 @@ export default function HomeScreen({ onNavigate }: HomeScreenProps) {
                   </div>
                   <div className="grid grid-cols-2 gap-2 text-[11px] leading-4">
                     <div className="p-1.5 bg-white text-black border border-black font-bold">
-                      [1] Customer App
+                      [1] Customer app
                       <br />
                       <span className="text-[#444748] font-normal">iOS &amp; Android Client</span>
                     </div>
                     <div className="p-1.5 bg-white text-black border border-black font-bold">
-                      [2] Merchant Portal
+                      [2] Shop Partner app
                       <br />
-                      <span className="text-[#444748] font-normal">Live Tablet POS</span>
+                      <span className="text-[#444748] font-normal">Store Management POS</span>
                     </div>
                     <div className="p-1.5 bg-white text-black border border-black font-bold">
-                      [3] Courier Agent
+                      [3] Delivery Partner app
                       <br />
-                      <span className="text-[#444748] font-normal">Background Telemetry</span>
+                      <span className="text-[#444748] font-normal">Driver Tracking &amp; Routing</span>
                     </div>
                     <div className="p-1.5 bg-[#fae100] text-black border border-black font-bold">
-                      [4] Central Ops
+                      [4] Admin panel
                       <br />
-                      <span className="font-normal">Unified Super Admin</span>
+                      <span className="font-normal">Central Control Dashboard</span>
                     </div>
                   </div>
                   <div className="pt-1 text-[11px] text-[#c8c6c5]">
@@ -392,7 +392,7 @@ export default function HomeScreen({ onNavigate }: HomeScreenProps) {
               </div>
               <div className="p-4 flex flex-col gap-2">
                 <span className="font-label-code text-[11px] text-[#444748]">
-                  MARCH '26 • ENTERPRISE
+                  FEB '26 - APR '26 • ENTERPRISE
                 </span>
                 <h3 className="font-headline-md text-black font-bold">
                   ERP Products
@@ -438,7 +438,7 @@ export default function HomeScreen({ onNavigate }: HomeScreenProps) {
               </div>
               <div className="p-4 flex flex-col gap-2">
                 <span className="font-label-code text-[11px] text-[#444748]">
-                  JAN '26 • TELEHEALTH
+                  FEB '25 - JAN '26 • TELEHEALTH
                 </span>
                 <h3 className="font-headline-md text-black font-bold">
                   Doctor Booking Application

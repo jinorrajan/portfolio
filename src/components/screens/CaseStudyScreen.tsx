@@ -14,9 +14,9 @@ export default function CaseStudyScreen({ onNavigate }: CaseStudyScreenProps) {
   const [simulating, setSimulating] = useState(false);
   const [simCount, setSimCount] = useState(1);
   const [metrics, setMetrics] = useState({
-    activeCouriers: 148,
-    ordersInFlight: 842,
-    avgPickupLatency: '11.4 min',
+    activeCouriers: 35,
+    ordersInFlight: 120,
+    avgPickupLatency: '12.4 min',
     redisDispatchMs: '3.8 ms',
     geoMatchRate: '98.9%',
   });
@@ -26,9 +26,9 @@ export default function CaseStudyScreen({ onNavigate }: CaseStudyScreenProps) {
     setTimeout(() => {
       setSimCount((prev) => prev + 1);
       setMetrics({
-        activeCouriers: 180 + Math.floor(Math.random() * 40),
-        ordersInFlight: 1200 + Math.floor(Math.random() * 300),
-        avgPickupLatency: (10.5 + Math.random() * 1.2).toFixed(1) + ' min',
+        activeCouriers: 45 + Math.floor(Math.random() * 15),
+        ordersInFlight: 150 + Math.floor(Math.random() * 50),
+        avgPickupLatency: (11.5 + Math.random() * 2.2).toFixed(1) + ' min',
         redisDispatchMs: (3.1 + Math.random() * 1.5).toFixed(1) + ' ms',
         geoMatchRate: (98.2 + Math.random() * 1.4).toFixed(1) + '%',
       });
@@ -71,26 +71,26 @@ export default function CaseStudyScreen({ onNavigate }: CaseStudyScreenProps) {
           <h1 className="font-headline-lg text-[32px] sm:text-[44px] font-bold text-black leading-tight">
             Food Delivery Platform Ecosystem
           </h1>
-          <p className="font-body-lg text-[18px] text-[#444748] mt-2 leading-relaxed max-w-3xl">
-            Architecting a high-throughput, multi-tier on-demand food logistics engine with real-time geofenced courier dispatch, sub-second POS synchronization, and resilient mobile state machines.
+          <p className="font-body-lg text-[18px] text-[#444748] mt-2 leading-relaxed">
+            Architecting a high-throughput, multi-tier food delivery ecosystem involving customer, shop, delivery partner, and admin applications. The system leverages real-time geofenced partner dispatch, synchronized order management, and resilient mobile state machines to handle heavy concurrency, and is currently undergoing extensive beta testing.
           </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6 pt-6 border-t-2 border-black">
             <div className="p-3 bg-[#f5f4ef] border border-black text-center shadow-[2px_2px_0px_#000000]">
-              <div className="font-display-xl text-[26px] font-bold text-black">-24%</div>
-              <div className="font-label-badge text-[10px] text-[#444748] uppercase">Pickup Latency</div>
+              <div className="font-display-xl text-[26px] font-bold text-black">10,000+</div>
+              <div className="font-label-badge text-[10px] text-[#444748] uppercase">Target Concurrency</div>
             </div>
             <div className="p-3 bg-[#f5f4ef] border border-black text-center shadow-[2px_2px_0px_#000000]">
-              <div className="font-display-xl text-[26px] font-bold text-black">99.98%</div>
-              <div className="font-label-badge text-[10px] text-[#444748] uppercase">Socket Uptime</div>
+              <div className="font-display-xl text-[26px] font-bold text-black">&lt;50ms</div>
+              <div className="font-label-badge text-[10px] text-[#444748] uppercase">Expected API Latency</div>
             </div>
             <div className="p-3 bg-[#f5f4ef] border border-black text-center shadow-[2px_2px_0px_#000000]">
-              <div className="font-display-xl text-[26px] font-bold text-black">15,000+</div>
-              <div className="font-label-badge text-[10px] text-[#444748] uppercase">Peak Orders / Day</div>
+              <div className="font-display-xl text-[26px] font-bold text-black">85%</div>
+              <div className="font-label-badge text-[10px] text-[#444748] uppercase">Test Coverage</div>
             </div>
             <div className="p-3 bg-[#fae100] border border-black text-center shadow-[2px_2px_0px_#000000]">
               <div className="font-display-xl text-[26px] font-bold text-[#201c00]">4 Apps</div>
-              <div className="font-label-badge text-[10px] text-[#201c00] uppercase font-bold">1 Codebase Archetype</div>
+              <div className="font-label-badge text-[10px] text-[#201c00] uppercase font-bold">Ecosystem Apps</div>
             </div>
           </div>
         </section>
@@ -107,10 +107,10 @@ export default function CaseStudyScreen({ onNavigate }: CaseStudyScreenProps) {
                 </h2>
               </div>
               <p className="font-body-md text-[#444748] leading-relaxed">
-                During peak lunch hours (12:00 PM – 2:00 PM), naive HTTP polling models caused severe database locking on order state tables. Couriers experienced race conditions where multiple riders accepted the same order within 300 milliseconds.
+                During peak lunch hours (12:00 PM – 2:00 PM), naive HTTP polling models caused severe database locking on order state tables. Delivery partners experienced race conditions where multiple partners accepted the same order within 300 milliseconds.
               </p>
               <div className="p-3 bg-[#efeee9] border border-black font-label-code text-[12px] text-red-700">
-                [FAULT_AUDIT]: Postgres CPU spiked to 88% • Polling frequency overwhelmed connection pool • Average driver idle wait: 14.8 minutes.
+                [FAULT_AUDIT]: Postgres CPU spiked to 88% • Polling frequency overwhelmed connection pool • Average partner idle wait: 14.8 minutes.
               </div>
             </div>
 
@@ -131,11 +131,11 @@ export default function CaseStudyScreen({ onNavigate }: CaseStudyScreenProps) {
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 size={16} className="text-black shrink-0 mt-0.5" />
-                  <span><strong>Atomic Locking:</strong> Redis Lua scripts reserve driver assignment exclusively with a 15-second TTL window before fallback re-assignment.</span>
+                  <span><strong>Atomic Locking:</strong> Redis Lua scripts reserve delivery partner assignment exclusively with a 15-second TTL window before fallback re-assignment.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 size={16} className="text-black shrink-0 mt-0.5" />
-                  <span><strong>Bidirectional gRPC:</strong> Drivers stream GPS updates via persistent gRPC channels rather than bloated HTTP POST payloads.</span>
+                  <span><strong>Bidirectional gRPC:</strong> Delivery partners stream GPS updates via persistent gRPC channels rather than bloated HTTP POST payloads.</span>
                 </li>
               </ul>
             </div>
@@ -151,20 +151,20 @@ export default function CaseStudyScreen({ onNavigate }: CaseStudyScreenProps) {
               </div>
               <div className="grid grid-cols-2 gap-2 text-[11px]">
                 <div className="p-2 bg-white text-black font-bold border border-black">
-                  [1] Customer App
+                  [1] Customer app
                   <div className="font-normal text-[#444748]">Flutter iOS / Android</div>
                 </div>
                 <div className="p-2 bg-white text-black font-bold border border-black">
-                  [2] Merchant Tablet
-                  <div className="font-normal text-[#444748]">POS WebSocket Client</div>
+                  [2] Shop Partner app
+                  <div className="font-normal text-[#444748]">Order &amp; Kitchen Management</div>
                 </div>
                 <div className="p-2 bg-white text-black font-bold border border-black">
-                  [3] Courier Agent
-                  <div className="font-normal text-[#444748]">Background Telemetry</div>
+                  [3] Delivery Partner app
+                  <div className="font-normal text-[#444748]">Food Delivery Partner Routing</div>
                 </div>
                 <div className="p-2 bg-[#fae100] text-black font-bold border border-black">
-                  [4] Central Ops
-                  <div className="font-normal text-black">Unified Super Admin</div>
+                  [4] Admin panel
+                  <div className="font-normal text-black">Central Control Dashboard</div>
                 </div>
               </div>
               <div className="text-[11px] text-[#c8c6c5] pt-1">
@@ -177,14 +177,14 @@ export default function CaseStudyScreen({ onNavigate }: CaseStudyScreenProps) {
               <div className="flex items-center justify-between border-b-2 border-black pb-2">
                 <div className="font-headline-sm text-[16px] font-bold text-black uppercase flex items-center gap-2">
                   <Activity size={18} />
-                  Live Dispatch Benchmark
+                  Beta Dispatch Benchmark
                 </div>
                 <span className="font-label-code text-[11px] text-[#444748]">TEST_CYCLE: #{simCount}</span>
               </div>
 
               <div className="grid grid-cols-2 gap-2 text-[12px] font-label-code">
                 <div className="p-2 bg-[#f5f4ef] border border-black">
-                  <div className="text-[#444748]">Active Couriers</div>
+                  <div className="text-[#444748]">Active Partners</div>
                   <div className="font-bold text-[14px] text-black">{metrics.activeCouriers} online</div>
                 </div>
                 <div className="p-2 bg-[#f5f4ef] border border-black">
@@ -235,10 +235,10 @@ export default function CaseStudyScreen({ onNavigate }: CaseStudyScreenProps) {
           </div>
 
           <pre className="p-4 bg-[#1c1b1b] text-[#f2f1ec] font-label-code text-[12px] overflow-x-auto leading-relaxed border border-black">
-{`// EvaluateGeofencedCouriers identifies nearest active courier with atomic lock
-func (d *DispatchEngine) AssignOrder(ctx context.Context, orderID string, shopLocation GeoPoint) (*Courier, error) {
-    // 1. Query Redis GeoSet for available riders within radius
-    riders, err := d.redisClient.GeoSearch(ctx, "couriers:active", &redis.GeoSearchQuery{
+            {`// EvaluateGeofencedPartners identifies nearest active delivery partner with atomic lock
+func (d *DispatchEngine) AssignOrder(ctx context.Context, orderID string, shopLocation GeoPoint) (*DeliveryPartner, error) {
+    // 1. Query Redis GeoSet for available partners within radius
+    partners, err := d.redisClient.GeoSearch(ctx, "partners:active", &redis.GeoSearchQuery{
         Longitude:  shopLocation.Lng,
         Latitude:   shopLocation.Lat,
         Radius:     1500, // 1.5km geofence
@@ -246,17 +246,17 @@ func (d *DispatchEngine) AssignOrder(ctx context.Context, orderID string, shopLo
         Sort:       "ASC",
         Count:      5,
     }).Result()
-    if err != nil || len(riders) == 0 {
-        return nil, ErrNoCouriersNearby
+    if err != nil || len(partners) == 0 {
+        return nil, ErrNoPartnersNearby
     }
 
-    // 2. Execute Atomic Lua Script to claim first unreserved courier
-    for _, rider := range riders {
-        locked, _ := d.acquireReservationLock(ctx, rider.Name, orderID, 15*time.Second)
+    // 2. Execute Atomic Lua Script to claim first unreserved partner
+    for _, partner := range partners {
+        locked, _ := d.acquireReservationLock(ctx, partner.Name, orderID, 15*time.Second)
         if locked {
             // Dispatch real-time WebSocket push event
-            go d.notifyCourierChannel(rider.Name, orderID)
-            return &Courier{ID: rider.Name}, nil
+            go d.notifyPartnerChannel(partner.Name, orderID)
+            return &DeliveryPartner{ID: partner.Name}, nil
         }
     }
     return nil, ErrContentionRetrying

@@ -18,7 +18,7 @@ export default function ProjectsScreen({ onNavigate }: ProjectsScreenProps) {
     { id: 'backend', label: 'Backend & Systems', count: PROJECTS.filter((p) => p.categoryKey === 'backend').length },
     { id: 'fullstack', label: 'Fullstack Ecosystem', count: PROJECTS.filter((p) => p.categoryKey === 'fullstack').length },
     { id: 'enterprise', label: 'Enterprise Workflows', count: PROJECTS.filter((p) => p.categoryKey === 'enterprise').length },
-  ];
+  ].filter(f => f.count > 0);
 
   const filteredProjects = PROJECTS.filter((project) => {
     if (activeFilter === 'all') return true;

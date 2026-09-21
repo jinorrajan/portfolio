@@ -67,14 +67,18 @@ export default function ExperienceScreen({ onNavigate }: ExperienceScreenProps) 
                 </div>
 
                 <div className="flex flex-wrap items-center gap-3 font-label-code text-[12px] text-[#444748]">
-                  <div className="flex items-center gap-1.5 px-2.5 py-1 bg-[#efeee9] border border-black">
-                    <Calendar size={13} />
-                    <span>{exp.period}</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 px-2.5 py-1 bg-[#efeee9] border border-black">
-                    <MapPin size={13} />
-                    <span>{exp.location}</span>
-                  </div>
+                  {exp.period && (
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 bg-[#efeee9] border border-black">
+                      <Calendar size={13} />
+                      <span>{exp.period}</span>
+                    </div>
+                  )}
+                  {exp.location && (
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 bg-[#efeee9] border border-black">
+                      <MapPin size={13} />
+                      <span>{exp.location}</span>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -129,8 +133,8 @@ export default function ExperienceScreen({ onNavigate }: ExperienceScreenProps) 
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 font-label-code text-[12px]">
             <div className="p-3 bg-white border border-black shadow-[2px_2px_0px_#000000]">
-              <div className="font-bold text-black text-[13px]">B.Tech in Computer Science &amp; Engineering</div>
-              <div className="text-[#444748] mt-1">Core coursework in Data Structures, Algorithms, Distributed Systems &amp; Database Architecture.</div>
+              <div className="font-bold text-black text-[13px]">B.E. Artificial Intelligence &amp; Data Science</div>
+              <div className="text-[#444748] mt-1">Core coursework in Artificial Intelligence, Machine Learning, Deep Learning, Big Data Analytics &amp; Database Management.</div>
             </div>
             <div className="p-3 bg-white border border-black shadow-[2px_2px_0px_#000000]">
               <div className="font-bold text-black text-[13px]">Open Source &amp; Continuous Learning</div>

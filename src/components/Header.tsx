@@ -53,11 +53,10 @@ export default function Header({ currentTab, onSelectTab }: HeaderProps) {
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`whitespace-nowrap px-3 py-1 text-[14px] font-headline-sm cursor-pointer transition-all ${
-                  isActive
-                    ? 'bg-[#fae100] text-[#201c00] border-2 border-black shadow-[2px_2px_0px_#000000] font-bold'
-                    : 'border border-transparent text-[#444748] hover:border-black hover:bg-white hover:text-[#1b1c19]'
-                }`}
+                className={`whitespace-nowrap px-3 py-1 text-[14px] font-headline-sm cursor-pointer transition-all ${isActive
+                  ? 'bg-[#fae100] text-[#201c00] border-2 border-black shadow-[2px_2px_0px_#000000] font-bold'
+                  : 'border border-transparent text-[#444748] hover:border-black hover:bg-white hover:text-[#1b1c19]'
+                  }`}
               >
                 {item.label}
               </button>
@@ -133,11 +132,10 @@ export default function Header({ currentTab, onSelectTab }: HeaderProps) {
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className={`px-3 py-2 text-[14px] font-headline-sm text-left cursor-pointer transition-all ${
-                    isActive
-                      ? 'bg-[#fae100] text-[#201c00] border-2 border-black shadow-[2px_2px_0px_#000000] font-bold'
-                      : 'bg-white border-2 border-black text-[#1b1c19] hover:bg-[#efeee9]'
-                  }`}
+                  className={`px-3 py-2 text-[14px] font-headline-sm text-left cursor-pointer transition-all ${isActive
+                    ? 'bg-[#fae100] text-[#201c00] border-2 border-black shadow-[2px_2px_0px_#000000] font-bold'
+                    : 'bg-white border-2 border-black text-[#1b1c19] hover:bg-[#efeee9]'
+                    }`}
                 >
                   {item.label}
                 </button>

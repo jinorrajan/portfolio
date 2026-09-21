@@ -84,9 +84,9 @@ export default function Footer({ onSelectTab }: FooterProps) {
               </a>
               <a
                 className="hover:text-black hover:underline"
-                href="mailto:jinorrajan@gmail.com"
+                href="mailto:jino.developer21@gmail.com"
               >
-                Email: jinorrajan@gmail.com
+                Email: jino.developer21@gmail.com
               </a>
               <a
                 className="hover:text-black hover:underline"

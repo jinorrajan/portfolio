@@ -111,7 +111,7 @@ export default function ProjectModal({ project, onClose, onGoToCaseStudy }: Proj
                   key={i}
                   className="p-3 bg-white border-2 border-black shadow-[3px_3px_0px_#000000] flex flex-col items-center text-center"
                 >
-                  <span className="font-display-xl text-[24px] sm:text-[28px] font-bold text-black">
+                  <span className="font-headline-lg text-[24px] sm:text-[28px] font-bold text-black">
                     {m.value}
                   </span>
                   <span className="font-label-badge text-[10px] text-[#444748] uppercase tracking-wider font-bold mt-0.5">
